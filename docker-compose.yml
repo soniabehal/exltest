@@ -1,0 +1,12 @@
+version: '2'
+services:
+  exlskills-app:
+    build: .
+    ports:
+     - "9002:3000"
+    depends_on:
+     - db
+  db:
+    build: ./config/database
+    ports:
+      - 3308:3306

@@ -1,0 +1,5 @@
+GRAPHQL_URL = https://abc.io/graphql
+MYSQL_ROOT_PASSWORD = pass
+MYSQL_DATABASE_NAME = exlapp
+MYSQL_USER = root
+MYSQL_HOST = db

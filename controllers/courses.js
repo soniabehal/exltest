@@ -1,6 +1,7 @@
 const requestServer = require("../services/request");
 const query = require("../utils/query");
 const retrieveIDs = require("../utils/retrieveIds");
+const sqlquery = require("../config/database/db");
 module.exports = {
   async getAllCourses(req, res) {
     try {
@@ -10,11 +11,16 @@ module.exports = {
 
       let units = await requestServer(query.listCardsQuery(courseId));
       if (!units.body.data) throw units.body.errors;
-      const cardIds = retrieveIDs(units.body.data.listUnits.edges);
-      res.send("sql write Successfull");
+      let cardIds = retrieveIDs(units.body.data.listUnits.edges);
+      cardIds=cardIds.map(cd=>`(${JSON.stringify(cd)})`);
+      let rows = await sqlquery(`INSERT INTO data (id) VALUES ${cardIds.join(',')}`);
+      res.send({
+        success: "true",
+        message: "MySql write Successfull "+rows.message
+      });
     }
     catch (e) {
-      res.send({ message: "Error while fteching api data ", error: e })
+      res.send({ message: "Error occur while writing Id's ", error: e })
     }
   }
 }
