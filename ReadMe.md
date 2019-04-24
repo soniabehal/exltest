@@ -4,11 +4,11 @@
 2. In the config directory add .env file and you can refer sample env.
 3. Run command 
 ```sh
-$ docker-compose --build
+$ docker-compose up --build
 ```
 4. Check for the running processes using 
 ```sh
-$ docker-compose ps.
+$ docker-compose ps
 ```
 There must be two processes running.
 
@@ -17,6 +17,8 @@ There must be two processes running.
 
 | CONTAINER NAME | LANGUAGE | PORT |
 | --- | --- | --- |
-| exlapp | node.js | 9002 |
+| exlskills-app | node.js | 9002 |
 | db | MySql | 3008 |
+
+6. Hit the route http://localhost:9002 
 
